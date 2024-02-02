@@ -1,4 +1,4 @@
-from book_crud import  create_book, display_books
+from book_crud import  create_book, display_books, delete_book
 
 # menu --> insert book , update , delete , list all
 # json files ==>
@@ -19,7 +19,7 @@ def mainmenu():
         elif choice=='l':
             display_books()
         elif choice =='d':
-            pass
+            delete_book()
         elif choice=='e':
             exit()
         else:

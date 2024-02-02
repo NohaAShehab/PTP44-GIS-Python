@@ -34,15 +34,52 @@ def read_all_books():
 
 
 
-def save_book_to_file(book_data):
-    old_data = read_all_books()
+def save_all_books(books:list):
     try:
         fileobject = open("books.json", 'w')
     except Exception as e:
         print("Error while saving book --> try again ")
         return False
     else:
-        old_data.append(book_data)
-        json.dump(old_data, fileobject, indent=2)
+        json.dump(books, fileobject, indent=2)
         return True
 
+
+
+def save_book_to_file(book_data):
+    old_data = read_all_books()
+    old_data.append(book_data)
+    saved=save_all_books(old_data)
+    return saved
+    # try:
+    #     fileobject = open("books.json", 'w')
+    # except Exception as e:
+    #     print("Error while saving book --> try again ")
+    #     return False
+    # else:
+    #     old_data.append(book_data)
+    #     json.dump(old_data, fileobject, indent=2)
+    #     return True
+
+
+
+def search_book_by_id(book_id):
+    all_books = read_all_books()
+    for book in all_books:
+        if book['id'] == book_id:
+            return book
+    else:
+        return False
+
+
+
+
+def delete_from_file(book):
+    all_books = read_all_books()  # list
+    print(all_books)
+    if all_books:
+        all_books.remove(book)
+        print(all_books)
+        deleted=save_all_books(all_books)
+        return deleted
+        # write all books after
